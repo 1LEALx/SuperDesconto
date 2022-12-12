@@ -1,0 +1,224 @@
+* {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f5f5f5 !important;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.container-head {
+    min-width: 100%;
+    height: 15vh;
+    display: flex;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    background-color: #41637b;
+}
+
+.icon-profile {
+    color: #ffff;
+    font-size: x-large;
+}
+
+.container-search {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 50vh !important;
+    margin-top: 1.5vh;
+    min-height: 4vh;
+}
+
+.input-search {
+    position: relative;
+    border: none !important;
+    border-radius: 0.5vh;
+    padding: 0vh 1.5vh 0vh 1.5vh !important;
+    line-height: 4.5vh;
+    font-size: 2vh !important;
+    outline: none;
+    vertical-align: middle;
+    border-style: none; 
+    outline: none;
+}
+
+.input-search:focus {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none;
+}
+
+.button-search {
+    background-color: #ffff !important;
+    border: none !important;
+    font-size: 3vh;
+    color: rgba(0, 0, 0, 0.25) !important;
+}
+
+.button-search:hover {
+    color: #41637b !important;
+}
+
+
+.icon-search {
+    font-size: 3vh;
+    transition: 0.25s;
+    padding: 0vh 0vh 0vh 0vh !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.button-profile {
+    background-color: #41637b !important;
+    cursor: pointer;
+    border: 2px solid #ffff !important;
+    font-size: large !important;
+    font-weight: 700 !important;
+    position: relative;
+    cursor: pointer;
+    background: transparent !important;
+    font-family: inherit !important;
+    display: flex !important;
+    align-items: center !important;
+    text-align: center !important;
+    max-width: 170px !important;
+    transition: 0.4s !important;
+}
+
+
+
+/* Account Panel */
+
+.course-container {
+    /* background-color: #000; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-container {
+    /* background-color: #000; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-h6 {
+    color: #41637b;
+    font-size: 30px;
+}
+
+.card {
+    background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	display: flex;
+	max-width: 100%;
+	overflow: hidden;
+    min-height: 125px;
+    align-items: center;
+    justify-content: center;
+    width: 335px;
+}
+
+.card h6 {
+	opacity: 0.7;
+	margin: 0;
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.card-info {
+    display: flex;
+}
+
+.course {
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	display: flex;
+	max-width: 100%;
+	overflow: hidden;
+	max-width: 1100px;
+}
+
+.course h6 {
+	opacity: 0.6;
+	margin: 0;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.course h2 {
+	letter-spacing: 1px;
+	margin: 10px 0;
+}
+
+.course-preview {
+	background-color: #41637b;
+	color: #fff;
+	padding: 30px;
+	max-width: 1000px !important;
+}
+
+.course-info {
+	padding: 30px;
+	position: relative;
+	width: 700px;
+}
+
+.btn-panel-preview {
+    background-color: #ffff;
+	border: 0;
+	border-radius: 10px;
+	color: #41637b;
+	font-size: 16px;
+    font-weight: 700;
+	padding: 10px 16px;
+	bottom: 30px;
+	right: 30px;
+	letter-spacing: 1px;
+    display: flex;
+}
+
+.btn-panel {
+    background-color: #41637b;
+	border: 0;
+	border-radius: 10px;
+	color: #fff;
+	font-size: 16px;
+    font-weight: 700;
+	padding: 12px 12px;
+	position: absolute;
+	bottom: 30px;
+	right: 30px;
+	letter-spacing: 1px;
+    display: flex;
+}
+
+.config-account {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.exit-account {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+}
