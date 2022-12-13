@@ -8,8 +8,6 @@
     <script src="https://kit.fontawesome.com/f653a2c6ae.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="css/profilestyle.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
     <?php
@@ -26,14 +24,37 @@
         $password =   '"' . $password . '"';
         $hoje = date('Y/m/d');
         $hoje = '"' . $hoje . '"';
-        $query = "INSERT into usuario (nome, email, senha, data_criacao) values ($username,$email,$password,$hoje)";
-        if (mysqli_query($con, $query)) {
+        $query = "INSERT INTO usuario (nome, email, senha, data_criacao) VALUES ($username,$email,md5($password),$hoje)";
+        if (mysqli_query($con, $query) === TRUE) {
             $_SESSION["cadastro"] = "sucesso";
             $_SESSION["nome"] = $username;
             $_SESSION["email"] = $email;
             header("location: index.php");
         } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            echo "Error: " . $sql . "<br>" . mysqli_error($con);
+        }
+    }
+    else if((isset($_POST['email'])) && (isset($_POST['senha']))){
+        $email = stripslashes($_POST['email']);
+        $email = mysqli_real_escape_string($con, $_POST['email']);
+        $email =  '"' . $email . '"';
+        $password = stripslashes($_POST['senha']);
+        $password = mysqli_real_escape_string($con, $_POST['senha']);
+        $password = '"' . $password . '"';
+            
+        $result_usuario = "SELECT * FROM usuario WHERE email = $email AND senha = md5($password) LIMIT 1";
+        $resultado_usuario = mysqli_query($con, $result_usuario);
+        $resultado = mysqli_fetch_assoc($resultado_usuario);
+        $username = '"' . $resultado['nome'] . '"';
+        
+        if(isset($resultado)){
+            $_SESSION['usuarioId'] = $resultado['idusuario'];
+            $_SESSION['nome'] = $username;
+            $_SESSION['usuarioEmail'] = $resultado['email'];
+            header("Location: index.php");
+        }else{    
+            $_SESSION['loginErro'] = "Usuário ou senha Inválido";
+            header("Location: profile.php");
         }
     }
     ?>
@@ -47,6 +68,9 @@
             <div class="col-sm-2"></div>
         </div>
     </div>
+    <div class="space">&nbsp;</div>
+    <div class="space">&nbsp;</div>
+    <div class="space">&nbsp;</div>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <form action="#" method="POST">
@@ -74,16 +98,16 @@
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form action="profile.php" method="POST">
+            <form action="#" method="POST">
                 <h1>Entre com sua conta</h1>
                 <br>
-                <div class="input-container">
-                    <input type="text" required="">
+                <div maxlength="110" class="input-container">
+                    <input type="text" required="" name="email">
                     <label>Email</label>
                 </div>
                 <br>
-                <div class="input-container">
-                    <input type="password" required="">
+                <div maxlength="30" class="input-container">
+                    <input type="password" required="" name="senha">
                     <label>Senha</label>
                 </div>
                 <a href="#">Esqueceu sua senha?</a>
@@ -110,5 +134,7 @@
         </div>
     </div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="js/profilejs.js"></script>
 </html>
