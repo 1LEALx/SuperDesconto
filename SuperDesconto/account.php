@@ -59,10 +59,12 @@
 	    <div class="course">
 		    <div class="course-preview">
                 <?php
-                if ($_SESSION["tipoconta"] == 1) {
-                    echo '<h6>Cliente</h6>';
-                } else if ($_SESSION["tipoconta"] == 2) {
+                if ($_SESSION["tipoconta"] == 2) {
                     echo '<h6>Empresa</h6>';
+                } else if ($_SESSION["tipoconta"] == 1) {
+                    echo '<h6>Cliente</h6>';
+                } else {
+                    echo '<h6>Cliente</h6>';
                 }
                 ?>
                 <?php

@@ -31,7 +31,7 @@
             $_SESSION["cadastro"] = "sucesso";
             $_SESSION["nome"] = $username;
             $_SESSION["email"] = $email;
-            $_SESSION["tipoconta"] = $tipoconta;
+            $_SESSION["tipoconta"] = $cliente;
             header("location: index.php");
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($con);
