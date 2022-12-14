@@ -40,7 +40,7 @@
                         &nbsp;
                         <?php
                         $nomeusuario = $_SESSION['nome'];
-                        $formatnome = substr($nomeusuario, 1);
+                        $formatnome = substr($nomeusuario, 1, -1);
                         echo strtok($formatnome, " ");
                         ?>
                     </a> 
@@ -58,8 +58,16 @@
     <div class="mt-5 course-container">
 	    <div class="course">
 		    <div class="course-preview">
-			    <h6>Cliente</h6>
-			    <h2 class="mt-2 mb-4">Guilherme Passig Leal</h2>
+                <?php
+                if ($_SESSION["tipoconta"] == 1) {
+                    echo '<h6>Cliente</h6>';
+                } else if ($_SESSION["tipoconta"] == 2) {
+                    echo '<h6>Empresa</h6>';
+                }
+                ?>
+                <?php
+                echo '<h2 class="mt-2 mb-4">' .substr($nomeusuario, 1, -1). '</h2>';
+                ?>
                 <?php
                 echo '<a href="doLogout.php?token='.md5(session_id()).'"><button class="btn-panel-preview"><ion-icon class="me-2 exit-account" name="exit"></ion-icon> Sair</button></a>';
                 ?>

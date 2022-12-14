@@ -24,11 +24,14 @@
         $password =   '"' . $password . '"';
         $hoje = date('Y/m/d');
         $hoje = '"' . $hoje . '"';
-        $query = "INSERT INTO usuario (nome, email, senha, data_criacao) VALUES ($username,$email,md5($password),$hoje)";
+        $cliente = 1;
+        $cliente = '"' . $cliente . '"';
+        $query = "INSERT INTO usuario (nome, email, senha, data_criacao, tipoconta) VALUES ($username,$email,md5($password),$hoje,$cliente)";
         if (mysqli_query($con, $query) === TRUE) {
             $_SESSION["cadastro"] = "sucesso";
             $_SESSION["nome"] = $username;
             $_SESSION["email"] = $email;
+            $_SESSION["tipoconta"] = $tipoconta;
             header("location: index.php");
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($con);
@@ -41,7 +44,7 @@
         $password = stripslashes($_POST['senha']);
         $password = mysqli_real_escape_string($con, $_POST['senha']);
         $password = '"' . $password . '"';
-            
+
         $result_usuario = "SELECT * FROM usuario WHERE email = $email AND senha = md5($password) LIMIT 1";
         $resultado_usuario = mysqli_query($con, $result_usuario);
         $resultado = mysqli_fetch_assoc($resultado_usuario);
@@ -50,7 +53,8 @@
         if(isset($resultado)){
             $_SESSION['usuarioId'] = $resultado['idusuario'];
             $_SESSION['nome'] = $username;
-            $_SESSION['usuarioEmail'] = $resultado['email'];
+            $_SESSION['email'] = $resultado['email'];
+            $_SESSION['tipoconta'] = $resultado['tipoconta'];
             header("Location: index.php");
         }else{    
             $_SESSION['loginErro'] = "Usuário ou senha Inválido";
@@ -70,7 +74,6 @@
     </div>
     <div class="space">&nbsp;</div>
     <div class="space">&nbsp;</div>
-    <div class="space">&nbsp;</div>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <form action="#" method="POST">
@@ -80,14 +83,19 @@
                     <label>Nome</label>
                 </div>
                 <br>
-                <div maxlength="110" class="input-container">
-                    <input type="email" required="" name="email">
+                <div class="input-container">
+                    <input maxlength="110" type="email" required="" name="email">
                     <label>Email</label>
                 </div>
                 <br>
-                <div maxlength="30" class="input-container">
-                    <input type="password" required="" name="senha">
-                    <label>Senha</label>
+                <div id="input" class="input-container">
+                    <div class="input-group container-input">
+                        <input maxlength="30" class="form-control input-pass" id="pass" type="password" required="" name="senha">
+                        <div class="button-see">
+                            <img class="mb-1" id="eye" onclick="trocar()" src="imagens/eye-slash-solid.svg" width="20px">
+                        </div>
+                        <label>Senha</label>
+                    </div>
                 </div>
                 <br>
                 <button class="main-button" type="submit" value="submit">Realizar cadastro</button>
@@ -101,14 +109,19 @@
             <form action="#" method="POST">
                 <h1>Entre com sua conta</h1>
                 <br>
-                <div maxlength="110" class="input-container">
-                    <input type="text" required="" name="email">
+                <div class="input-container">
+                    <input maxlength="110" type="text" required="" name="email">
                     <label>Email</label>
                 </div>
                 <br>
-                <div maxlength="30" class="input-container">
-                    <input type="password" required="" name="senha">
-                    <label>Senha</label>
+                <div id="input-login" class="input-container">
+                    <div class="input-group container-input">
+                        <input maxlength="30" class="form-control input-pass contador" type="password" required="" name="senha">
+                        <div class="button-see">
+                            <img class="mb-1" id="eye-login" onclick="trocarLogin()" src="imagens/eye-slash-solid.svg" width="20px">
+                        </div>
+                        <label>Senha</label>
+                    </div>
                 </div>
                 <a href="#">Esqueceu sua senha?</a>
                 <button class="main-button">Login</button>

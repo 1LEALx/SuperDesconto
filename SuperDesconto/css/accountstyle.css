@@ -150,9 +150,7 @@ body {
 	border-radius: 10px;
 	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 	display: flex;
-	max-width: 100%;
 	overflow: hidden;
-	max-width: 1100px;
 }
 
 .course h6 {
@@ -171,7 +169,7 @@ body {
 	background-color: #41637b;
 	color: #fff;
 	padding: 30px;
-	max-width: 1000px !important;
+	max-width: 500px !important;
 }
 
 .course-info {

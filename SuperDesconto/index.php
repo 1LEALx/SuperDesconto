@@ -38,7 +38,7 @@
                         &nbsp;
                         <?php
                         $nomeusuario = $_SESSION['nome'];
-                        $formatnome = substr($nomeusuario, 1);
+                        $formatnome = substr($nomeusuario, 1, -1);
                         echo strtok($formatnome, " ");
                         ?>
                     </a> 
